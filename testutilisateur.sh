@@ -5,11 +5,11 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
-nom_utilisateur=$1
+username=$1
 
-if id "$nom_utilisateur" &>/dev/null; then
-  echo "L'utilisateur $nom_utilisateur existe."
+if id "$username" &>/dev/null; then
+  echo "L'utilisateur $username existe."
 else
-  echo "L'utilisateur $nom_utilisateur n'existe pas."
+  echo "L'utilisateur $username n'existe pas."
 fi
 
