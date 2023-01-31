@@ -1,14 +1,15 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then 
-	echo "Usage : $(basename $0) username"
-	exit 1
+if [ $# -eq 0 ]; then
+  echo "Utilisation : $(basename $0)nom_utilisateur"
+  exit 1
 fi
 
-username = $1
-if id "$username" >/dev/null 2>&1; then
-	echo "Utlisateur '$username' existe."
-else 
-	exho "Erreur: Utilisateur '$username'  n'existe pas.	
-	exit 1
+nom_utilisateur=$1
+
+if id "$nom_utilisateur" &>/dev/null; then
+  echo "L'utilisateur $nom_utilisateur existe."
+else
+  echo "L'utilisateur $nom_utilisateur n'existe pas."
 fi
+
