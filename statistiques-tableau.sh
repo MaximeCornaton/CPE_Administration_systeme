@@ -6,18 +6,22 @@ local number=$1
 local re='^[+-]?[0-9]+$'
 if ! [[ $number =~ $re ]] ; then 
 	echo "Les nombres ne sont pas des entiers!"
-	exit 1
+	return 1
 fi
+return 0
 }
 
 function is_valid()
 {
-local number=$1
-is_integer $1
+if ! (is_integer $1); then
+        return 1
+fi
+
 if ! [[ $1 -gt -100  &&  $1 -lt 100 ]]; then 
 	echo "Les nombres ne sont pas compris entre -100 et 100"
-	exit 1
+	return 1
 fi
+return 0
 }
 
 
@@ -37,18 +41,22 @@ max=-101
 min=101
 moyenne=0
 somme=0
-nombre_param=$#
 
-while (("$#")); do
-is_tested $1
-shift
+tableau=()
+read -p 'Saisissez une premiere valeur : ' last_val
+while (is_valid $last_val); do
+	tableau["${#tableau[@]}+1"]=$last_val
+	echo ${tableau[@]}
+	read -p 'Saisissez une valeur : ' last_val
 done
 
-if [ $nombre_param -gt 0 ];then
-	moyenne=$(echo "$somme/$nombre_param" | bc -l) 
+for val in ${tableau[@]}
+do
+	is_tested $val
+done
+
+if [ ${#tableau[@]} -gt 0 ];then
+	moyenne=$(echo "$somme/${#tableau[@]}" | bc -l) 
 
 	echo "Minimum = $min - Maximum = $max - Moyenne = $moyenne" 
-else
-	echo "Veuillez entrer des parametres"
-
 fi
