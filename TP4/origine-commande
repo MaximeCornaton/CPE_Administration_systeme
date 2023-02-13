@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dpkg -S $(which -a $1) 2> /dev/null

@@ -15,6 +15,6 @@ function is_number()
 if is_number "$1"; then 
 	echo "Le paramêtre est un nombre"
 else
-	echo "Erreur: le paramêtre n'est pas un nombre"
+	echo "Erreur: le paramêtre n'est pas un nombre réel"
 fi
 

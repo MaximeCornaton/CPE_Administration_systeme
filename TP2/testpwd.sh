@@ -12,4 +12,4 @@ done
 
 
 test_password
-echo "Bienvenue $USER"
+echo -e "\nBienvenue $USER"
